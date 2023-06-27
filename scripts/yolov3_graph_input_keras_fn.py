@@ -23,8 +23,8 @@ import shutil
 from PIL import Image
 
 
-calib_image_dir = "/workspace/yolov3_lecture/scripts/val2017/"
-calib_image_list = "/workspace/yolov3_lecture/scripts/yolov3_tf_calib.txt"
+calib_image_dir = "/workspace/yolov3-dlab/scripts/val2017/"
+calib_image_list = "/workspace/yolov3-dlab/scripts/yolov3_tf_calib.txt"
 calib_batch_size = 10
 
 #normalization factor to scale image 0-255 values to 0-1 #DB
