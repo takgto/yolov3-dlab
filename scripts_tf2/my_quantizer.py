@@ -4,9 +4,9 @@ import keras
 import tensorflow
 
 #from config import cifar10_config as cfg
-YOLOV3_DIR = '/workspace/yolov3_dlab/' 
+YOLOV3_DIR = '/workspace/yolov3-dlab/' 
 KERAS_MODEL = 'yolov3-obj.h5'
-CALIB_DATASET = '/workspace/yolov3_dlab/scripts_tf2/my_tf_calib2.npy'
+CALIB_DATASET = '/workspace/yolov3-dlab/scripts_tf2/my_tf_calib2.npy'
 board={}
 board['U280']=board['U50']=board['U50LV']='DPUCAHX8L'
 board['VCK190']='DPUCVDX8G'
