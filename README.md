@@ -20,4 +20,4 @@ Many codes related to yolov3 and its quantization tool, edge application and som
   **compile_yolov3.sh** in scripts_tf2 folder compiles quantized *.pb file, resulting in another quantized file of type int8 under ../yolov3_compiled directory.
   
 ## work
-  There are some files in darknet.
+  There are some files used in darknet.
