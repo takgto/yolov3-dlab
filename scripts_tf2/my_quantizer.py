@@ -17,7 +17,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-i",  "--inspect", action='store_true', default=False, help="use inspect model or not")
 ap.add_argument("-n",  "--network", default="yolov3",             help="input CNN")
 ap.add_argument("-s",  "--cal_steps", type=int, default=10,     help="# of epochs")
-ap.add_argument("-bs", "--cal_batch_size", type=int, default=16, help="size of mini-batches passed to network")
+ap.add_argument("-bs", "--cal_batch_size", type=int, default=8, help="size of mini-batches passed to network")
 args = vars(ap.parse_args())
 
 inspect = args["inspect"]
@@ -25,7 +25,7 @@ network = args["network"]
 quantized_dir = os.path.join(YOLOV3_DIR, 'yolov3_quantized2')
 
 # load kera model trained by cifar10 dataset.
-mdel_name = os.path.join(YOLOV3_DIR, 'keras_model', KERAS_MODEL)
+model_name = os.path.join(YOLOV3_DIR, 'keras_model', KERAS_MODEL)
 print(model_name)
 model = keras.models.load_model(model_name)
 
