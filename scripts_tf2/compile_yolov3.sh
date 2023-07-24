@@ -19,7 +19,7 @@ ARCH=/opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json
 
 vai_c_tensorflow2 -m ../yolov3_quantized2/quantized_dpu_yolov3-608.h5 \
                  -a ${ARCH} \
-		 -o ../yolov3_quantized2/dpu_yolov3.xmodel \
+		 -o ../yolov3_quantized2/dpu_yolov3-608.xmodel \
 		 -n ${NET_NAME} \
 		 -e "{'mode':'normal','save_kernel':'', 'input_shape':'1,608,608,3'}"
 
