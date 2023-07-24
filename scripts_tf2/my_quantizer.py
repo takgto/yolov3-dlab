@@ -5,8 +5,8 @@ import tensorflow
 
 #from config import cifar10_config as cfg
 YOLOV3_DIR = '/workspace/yolov3-dlab/' 
-KERAS_MODEL = 'yolov3-obj.h5'
-CALIB_DATASET = '/workspace/yolov3-dlab/scripts_tf2/my_tf_calib2.npy'
+KERAS_MODEL = 'dpu_yolov3-608.h5'
+CALIB_DATASET = '/workspace/yolov3-dlab/scripts_tf2/my_tf_calib4.npy'
 board={}
 board['U280']=board['U50']=board['U50LV']='DPUCAHX8L'
 board['VCK190']='DPUCVDX8G'
@@ -36,7 +36,7 @@ if inspect:
     target_kv260 = '/opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json'
     inspector = vitis_inspect.VitisInspector(target=target_kv260) # not worked by KV260
     inspector.inspect_model(model,
-                            input_shape=[416,416,3],
+                            input_shape=[608,608,3],
                             plot=True,
                             plot_file=os.path.join(quantized_dir, "model.svg"),
                             dump_results=True,
@@ -60,5 +60,5 @@ else:
                                            calib_steps=cal_steps,
                                            calib_batch_size=cal_batch_size,
                                            verbose=0)
-    quantized_model.save(os.path.join(quantized_dir, 'quantized_model.h5'))
+    quantized_model.save(os.path.join(quantized_dir, 'quantized_dpu_yolov3i-608.h5'))
 

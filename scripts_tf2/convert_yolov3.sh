@@ -11,5 +11,5 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-python ../keras-YOLOv3-model-set/tools/model_converter/convert.py ../work/yolov3-obj.cfg ../work/backup/yolov3-obj_best.weights ../keras_model/yolov3-obj.h5
-python ../keras-YOLOv3-model-set/tools/model_converter/keras_to_tensorflow.py --input_model ../keras_model/yolov3-obj.h5 --output_model=../tf_model/yolov3-obj_tf_model.pb
+python ../keras-YOLOv3-model-set/tools/model_converter/convert.py ../work/yolov3-608.cfg ../work/backup/yolov3-608_best.weights ../keras_model/dpu_yolov3-608.h5
+python ../keras-YOLOv3-model-set/tools/model_converter/keras_to_tensorflow.py --input_model ../keras_model/dpu_yolov3-608.h5 --output_model=../tf_model/dpu_yolov3-608.pb

@@ -14,13 +14,13 @@
 # limitations under the License.
 
 TARGET=KV260
-NET_NAME=dpu_yolov3_tf2 
+NET_NAME=dpu_yolov3_608 
 ARCH=/opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json
 
-vai_c_tensorflow2 -m ../yolov3_quantized2/quantized_model.h5 \
+vai_c_tensorflow2 -m ../yolov3_quantized2/quantized_dpu_yolov3-608.h5 \
                  -a ${ARCH} \
-		 -o ../yolov3_compiled/ \
+		 -o ../yolov3_quantized2/dpu_yolov3.xmodel \
 		 -n ${NET_NAME} \
-		 -e "{'mode':'normal','save_kernel':'', 'input_shape':'1,416,416,3'}"
+		 -e "{'mode':'normal','save_kernel':'', 'input_shape':'1,608,608,3'}"
 
 
