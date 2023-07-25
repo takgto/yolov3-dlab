@@ -60,5 +60,5 @@ else:
                                            calib_steps=cal_steps,
                                            calib_batch_size=cal_batch_size,
                                            verbose=0)
-    quantized_model.save(os.path.join(quantized_dir, 'quantized_dpu_yolov3i-608.h5'))
+    quantized_model.save(os.path.join(quantized_dir, 'quantized_dpu_yolov3-608.h5'))
 
