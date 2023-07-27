@@ -21,3 +21,38 @@ Many codes related to yolov3 and its quantization tool, edge application and som
   
 ## work
   There are some files used in darknet.
+
+## FPGAで推論するための準備
+<MobaXterm上>  (serial接続でOK）
+$ cd /usr/share/vitis_ai_library/models  
+$ mkdir /usr/share/vitis_ai_library/models/dpu_yolov3-608  
+
+<Windows PC上>  
+PCからFPGAにファイルを転送する。  
+$ cd /workspace/yolov3-dlab/yolov3_qunatized2  
+$ scp dpu_yolov3-608.xmodel　root@192.168.1.100:/usr/share/vitis_ai_library/models/dpu_yolov3-608  
+(Pass Wordを聞かれたらrootを入力)  
+同様に  
+$ scp md5sum.txt　root@192.168.1.100:/usr/share/vitis_ai_library/models/dpu_yolov3-608  
+$ scp meta.json　root@192.168.1.100:/usr/share/vitis_ai_library/models/dpu_yolov3-608
+
+<MobaXterm上>
+dpu_yolov3-608.prototxtを作る。  
+$ cd /usr/share/vitis_ai_library/models/dpu _yolov3-608
+$ cp ../yolov3_coco_416_tf2/yolov3_coco_416_tf2.prototxt dpu_yolov3-608.prototxt  
+dpu_yolov3-608.prototxtをエディターで開き  
+12行目のnum_classes: 80 → num_classes: 3に変更する。  
+
+MobaXtermのメニューのSession -> New SessionからSSHを選択   
+Remote Host: 192.168.1.100 Specify Name: root  
+
+以下のディレクトリに移動し、コンパイルのためのシェルスクリプトを実行。  
+$ cd /home/root/Vitis-AI/examples/Vitis-AI-Library/samples/yolov3  
+$ ./build.sh  
+
+
+
+
+
+
+
