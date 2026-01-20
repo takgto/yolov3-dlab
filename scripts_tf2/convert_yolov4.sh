@@ -1,4 +1,3 @@
-#!/bin/sh
 # Copyright 2020 Xilinx Inc.
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,17 +11,5 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-TARGET=KV260
-NET_NAME=dpu_yolov3-512
-#ARCH=/opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json
-#ARCH=my_arch.json
-#ARCH=arch_zcu104.json
-ARCH=arch_B512.json
-vai_c_tensorflow2 -m ../yolov3_quantized2/quantized_dpu_yolov3.h5 \
-                 -a ${ARCH} \
-		 -o ../compiled_yolov3-512 \
-		 -n ${NET_NAME} \
-		 -e "{'mode':'normal','save_kernel':'', 'input_shape':'1,416,416,3'}"
-
-
+python ../keras-YOLOv3-model-set/tools/model_converter/convert.py ../work/yolov4.cfg ../work/backup/yolov4_final.weights ../keras_model/yolov4.h5
+python ../keras-YOLOv3-model-set/tools/model_converter/keras_to_tensorflow.py --input_model ../keras_model/yolov4.h5 --output_model=../tf_model/yolov4_tf_model.pb

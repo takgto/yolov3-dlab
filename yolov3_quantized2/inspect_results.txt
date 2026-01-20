@@ -1,0 +1,1018 @@
+[MODEL INFO]:
+________________________________________________________________________________________________________________________
+Model Name: model
+________________________________________________________________________________________________________________________
+ID          Name                    Type                    Device      Notes                                           
+========================================================================================================================
+0/43        input_1                 InputLayer              INPUT                                                       
+------------------------------------------------------------------------------------------------------------------------
+1/43        conv2d                  Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+2/43        batch_normalization     BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+3/43        leaky_re_lu             LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+4/43        max_pooling2d           MaxPooling2D            CPU         `MaxPooling2D` is not supported by target       
+------------------------------------------------------------------------------------------------------------------------
+5/43        conv2d_1                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+6/43        batch_normalization_1   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+7/43        leaky_re_lu_1           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+8/43        max_pooling2d_1         MaxPooling2D            CPU         `MaxPooling2D` is not supported by target       
+------------------------------------------------------------------------------------------------------------------------
+9/43        conv2d_2                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+10/43       batch_normalization_2   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+11/43       leaky_re_lu_2           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+12/43       max_pooling2d_2         MaxPooling2D            CPU         `MaxPooling2D` is not supported by target       
+------------------------------------------------------------------------------------------------------------------------
+13/43       conv2d_3                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+14/43       batch_normalization_3   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+15/43       leaky_re_lu_3           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+16/43       max_pooling2d_3         MaxPooling2D            CPU         `MaxPooling2D` is not supported by target       
+------------------------------------------------------------------------------------------------------------------------
+17/43       conv2d_4                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+18/43       batch_normalization_4   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+19/43       leaky_re_lu_4           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+20/43       max_pooling2d_4         MaxPooling2D            CPU         `MaxPooling2D` is not supported by target       
+------------------------------------------------------------------------------------------------------------------------
+21/43       conv2d_5                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+22/43       batch_normalization_5   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+23/43       leaky_re_lu_5           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+24/43       max_pooling2d_5         MaxPooling2D            CPU         `MaxPooling2D` is not supported by target       
+------------------------------------------------------------------------------------------------------------------------
+25/43       conv2d_6                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+26/43       batch_normalization_6   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+27/43       leaky_re_lu_6           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+28/43       conv2d_7                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+29/43       batch_normalization_7   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+30/43       leaky_re_lu_7           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+31/43       conv2d_10               Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+32/43       batch_normalization_9   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+33/43       leaky_re_lu_9           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+34/43       up_sampling2d           UpSampling2D            DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+35/43       concatenate             Concatenate             DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+36/43       conv2d_8                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+37/43       conv2d_11               Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+38/43       batch_normalization_8   BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+39/43       batch_normalization_10  BatchNormalization      DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+40/43       leaky_re_lu_8           LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+41/43       leaky_re_lu_10          LeakyReLU               DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+42/43       conv2d_9                Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+43/43       conv2d_12               Conv2D<linear>          DPU                                                         
+------------------------------------------------------------------------------------------------------------------------
+========================================================================================================================
+[SUMMARY INFO]:
+- [Target Name]: DPUCZDX8G_ISA1_B4096
+- [Target Type]: DPUCZDX8G
+- [Total Layers]: 44
+- [Layer Types]: InputLayer(1) Conv2D<linear>(13) BatchNormalization(11) LeakyReLU(11) MaxPooling2D(6) UpSampling2D(1) Concatenate(1) 
+- [Partition Results]: INPUT(1) DPU(37) CPU(6) 
+========================================================================================================================
+[NOTES INFO]:
+- [4/43] Layer max_pooling2d (Type:MaxPooling2D, Device:CPU):
+    * `MaxPooling2D` is not supported by target
+- [8/43] Layer max_pooling2d_1 (Type:MaxPooling2D, Device:CPU):
+    * `MaxPooling2D` is not supported by target
+- [12/43] Layer max_pooling2d_2 (Type:MaxPooling2D, Device:CPU):
+    * `MaxPooling2D` is not supported by target
+- [16/43] Layer max_pooling2d_3 (Type:MaxPooling2D, Device:CPU):
+    * `MaxPooling2D` is not supported by target
+- [20/43] Layer max_pooling2d_4 (Type:MaxPooling2D, Device:CPU):
+    * `MaxPooling2D` is not supported by target
+- [24/43] Layer max_pooling2d_5 (Type:MaxPooling2D, Device:CPU):
+    * `MaxPooling2D` is not supported by target
+========================================================================================================================
+
+Detailed Model Info: 
+
+Layer ID: 0
+Layer Name: input_1
+Layer Type: InputLayer
+Device: INPUT
+Notes: 
+    None
+Layer Config:
+{'batch_input_shape': (None, 416, 416, 3),
+ 'dtype': 'float32',
+ 'name': 'input_1',
+ 'ragged': False,
+ 'sparse': False}
+________________________________________________________________________________________________________________________
+Layer ID: 1
+Layer Name: conv2d
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 16,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 2
+Layer Name: batch_normalization
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 3
+Layer Name: leaky_re_lu
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 4
+Layer Name: max_pooling2d
+Layer Type: MaxPooling2D
+Device: CPU
+Notes: 
+    1. `MaxPooling2D` is not supported by target
+Layer Config:
+{'data_format': 'channels_last',
+ 'dtype': 'float32',
+ 'name': 'max_pooling2d',
+ 'padding': 'same',
+ 'pool_size': (2, 2),
+ 'strides': (2, 2),
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 5
+Layer Name: conv2d_1
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 32,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_1',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 6
+Layer Name: batch_normalization_1
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_1.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_1',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 7
+Layer Name: leaky_re_lu_1
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_1',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 8
+Layer Name: max_pooling2d_1
+Layer Type: MaxPooling2D
+Device: CPU
+Notes: 
+    1. `MaxPooling2D` is not supported by target
+Layer Config:
+{'data_format': 'channels_last',
+ 'dtype': 'float32',
+ 'name': 'max_pooling2d_1',
+ 'padding': 'same',
+ 'pool_size': (2, 2),
+ 'strides': (2, 2),
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 9
+Layer Name: conv2d_2
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 64,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_2',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 10
+Layer Name: batch_normalization_2
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_2.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_2',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 11
+Layer Name: leaky_re_lu_2
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_2',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 12
+Layer Name: max_pooling2d_2
+Layer Type: MaxPooling2D
+Device: CPU
+Notes: 
+    1. `MaxPooling2D` is not supported by target
+Layer Config:
+{'data_format': 'channels_last',
+ 'dtype': 'float32',
+ 'name': 'max_pooling2d_2',
+ 'padding': 'same',
+ 'pool_size': (2, 2),
+ 'strides': (2, 2),
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 13
+Layer Name: conv2d_3
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 128,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_3',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 14
+Layer Name: batch_normalization_3
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_3.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_3',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 15
+Layer Name: leaky_re_lu_3
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_3',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 16
+Layer Name: max_pooling2d_3
+Layer Type: MaxPooling2D
+Device: CPU
+Notes: 
+    1. `MaxPooling2D` is not supported by target
+Layer Config:
+{'data_format': 'channels_last',
+ 'dtype': 'float32',
+ 'name': 'max_pooling2d_3',
+ 'padding': 'same',
+ 'pool_size': (2, 2),
+ 'strides': (2, 2),
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 17
+Layer Name: conv2d_4
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 256,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_4',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 18
+Layer Name: batch_normalization_4
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_4.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_4',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 19
+Layer Name: leaky_re_lu_4
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_4',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 20
+Layer Name: max_pooling2d_4
+Layer Type: MaxPooling2D
+Device: CPU
+Notes: 
+    1. `MaxPooling2D` is not supported by target
+Layer Config:
+{'data_format': 'channels_last',
+ 'dtype': 'float32',
+ 'name': 'max_pooling2d_4',
+ 'padding': 'same',
+ 'pool_size': (2, 2),
+ 'strides': (2, 2),
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 21
+Layer Name: conv2d_5
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 512,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_5',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 22
+Layer Name: batch_normalization_5
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_5.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_5',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 23
+Layer Name: leaky_re_lu_5
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_5',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 24
+Layer Name: max_pooling2d_5
+Layer Type: MaxPooling2D
+Device: CPU
+Notes: 
+    1. `MaxPooling2D` is not supported by target
+Layer Config:
+{'data_format': 'channels_last',
+ 'dtype': 'float32',
+ 'name': 'max_pooling2d_5',
+ 'padding': 'same',
+ 'pool_size': (2, 2),
+ 'strides': (1, 1),
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 25
+Layer Name: conv2d_6
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 1024,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_6',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 26
+Layer Name: batch_normalization_6
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_6.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_6',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 27
+Layer Name: leaky_re_lu_6
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_6',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 28
+Layer Name: conv2d_7
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 256,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (1, 1),
+ 'name': 'conv2d_7',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 29
+Layer Name: batch_normalization_7
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_7.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_7',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 30
+Layer Name: leaky_re_lu_7
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_7',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 31
+Layer Name: conv2d_10
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 128,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (1, 1),
+ 'name': 'conv2d_10',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 32
+Layer Name: batch_normalization_9
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_10.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_9',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 33
+Layer Name: leaky_re_lu_9
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_9',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 34
+Layer Name: up_sampling2d
+Layer Type: UpSampling2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'data_format': 'channels_last',
+ 'dtype': 'float32',
+ 'interpolation': 'nearest',
+ 'name': 'up_sampling2d',
+ 'size': (2, 2),
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 35
+Layer Name: concatenate
+Layer Type: Concatenate
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'axis': -1, 'dtype': 'float32', 'name': 'concatenate', 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 36
+Layer Name: conv2d_8
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 512,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_8',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 37
+Layer Name: conv2d_11
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 256,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (3, 3),
+ 'name': 'conv2d_11',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': False}
+________________________________________________________________________________________________________________________
+Layer ID: 38
+Layer Name: batch_normalization_8
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_8.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_8',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 39
+Layer Name: batch_normalization_10
+Layer Type: BatchNormalization
+Device: DPU
+Notes: 
+    1. Folded into previous layer conv2d_11.
+Layer Config:
+{'axis': ListWrapper([3]),
+ 'beta_constraint': None,
+ 'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'beta_regularizer': None,
+ 'center': True,
+ 'dtype': 'float32',
+ 'epsilon': 0.001,
+ 'gamma_constraint': None,
+ 'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+ 'gamma_regularizer': None,
+ 'momentum': 0.99,
+ 'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+ 'name': 'batch_normalization_10',
+ 'scale': True,
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 40
+Layer Name: leaky_re_lu_8
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_8',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 41
+Layer Name: leaky_re_lu_10
+Layer Type: LeakyReLU
+Device: DPU
+Notes: 
+    1. Converted alpha 0.1 to 26./256. to match DPU implementation.
+Layer Config:
+{'alpha': 0.10000000149011612,
+ 'dtype': 'float32',
+ 'name': 'leaky_re_lu_10',
+ 'trainable': True}
+________________________________________________________________________________________________________________________
+Layer ID: 42
+Layer Name: conv2d_9
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 24,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (1, 1),
+ 'name': 'conv2d_9',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': True}
+________________________________________________________________________________________________________________________
+Layer ID: 43
+Layer Name: conv2d_12
+Layer Type: Conv2D
+Device: DPU
+Notes: 
+    None
+Layer Config:
+{'activation': 'linear',
+ 'activity_regularizer': None,
+ 'bias_constraint': None,
+ 'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+ 'bias_regularizer': None,
+ 'data_format': 'channels_last',
+ 'dilation_rate': (1, 1),
+ 'dtype': 'float32',
+ 'filters': 24,
+ 'groups': 1,
+ 'kernel_constraint': None,
+ 'kernel_initializer': {'class_name': 'GlorotUniform',
+                        'config': {'seed': None}},
+ 'kernel_regularizer': {'class_name': 'L2',
+                        'config': {'l2': 0.0005000000237487257}},
+ 'kernel_size': (1, 1),
+ 'name': 'conv2d_12',
+ 'padding': 'same',
+ 'strides': (1, 1),
+ 'trainable': True,
+ 'use_bias': True}
+________________________________________________________________________________________________________________________

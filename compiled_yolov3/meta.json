@@ -1,0 +1,8 @@
+{
+    "lib": "libvart-dpu-runner.so",
+    "filename": "yolov3-tiny-416_final.xmodel",
+    "kernel": [
+        "subgraph_quant_concatenate"
+    ],
+    "target": "DPUCZDX8G_ISA1_B4096"
+}

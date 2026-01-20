@@ -1,0 +1,12 @@
+*.h5
+*.xmodel
+*.weights
+compiled_yolov3-*
+compiled_yolov3_*
+compiled_yolov4
+dpu_yolov3_kv260_platform_clk5
+yolov4_quantized2
+keras-YOLOv3-model-set
+keras_model
+tf_model
+

@@ -36,7 +36,7 @@ if inspect:
     target_kv260 = '/opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json'
     inspector = vitis_inspect.VitisInspector(target=target_kv260) # not worked by KV260
     inspector.inspect_model(model,
-                            input_shape=[416,416,3],
+                            input_shape=[320,320,3],
                             plot=True,
                             plot_file=os.path.join(quantized_dir, "model.svg"),
                             dump_results=True,

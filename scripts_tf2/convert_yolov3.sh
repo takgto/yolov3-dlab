@@ -1,4 +1,5 @@
-# Copyright 2020 Xilinx Inc.
+
+:# Copyright 2020 Xilinx Inc.
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,5 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-python ../keras-YOLOv3-model-set/tools/model_converter/convert.py ../work/yolov3-608.cfg ../work/backup/yolov3-608_best.weights ../keras_model/dpu_yolov3-608.h5
-python ../keras-YOLOv3-model-set/tools/model_converter/keras_to_tensorflow.py --input_model ../keras_model/dpu_yolov3-608.h5 --output_model=../tf_model/dpu_yolov3-608.pb
+python ../keras-YOLOv3-model-set/tools/model_converter/convert.py ../work/yolov3-obj.cfg ../work/backup/yolov3-obj_best.weights ../keras_model/dpu_yolov3-obj.h5
+#python ../keras-YOLOv3-model-set/tools/model_converter/convert.py ../work/yolov3-352.cfg ../work/backup/yolov3-352_last.weights ../keras_model/dpu_yolov3-352.h5
+python ../keras-YOLOv3-model-set/tools/model_converter/keras_to_tensorflow.py --input_model ../keras_model/dpu_yolov3-obj.h5 --output_model=../tf_model/dpu_yolov3-obj.pb
