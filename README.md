@@ -69,7 +69,7 @@ md5sum.txt
 ができる。  
 
 ### 自動転送スクリプト  
-yolov3-dlab/compiled_yolov3/transfer_model.py
+yolov3-dlab/compiled_yolov3/transfer_model.py  
 *.xmodel, meta.json, md5sum.txtを自動でKV260の/usr/share/vitis_ai_library/modelsにディレクトリを作って転送する。  
 例えば、  
 yolov3-tiny_final.xmodelの場合、yolov3-tinyというフォルダ（_より前の部分の名前）を作ってyolov3-tiny.xmodelとして転送する。 
