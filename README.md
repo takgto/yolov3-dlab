@@ -51,7 +51,7 @@ $ cd /home/root/Vitis-AI/examples/Vitis-AI-Library/samples/yolov3
 $ ./build.sh  
 
 ### 自動変換スクリプト
-scripts_tf2/convert_model.py  
+yolov3-dlab/scripts_tf2/convert_model.py  
 convert_model.py --weights_name <work/backupの下の*.weightsモデル> --config_name <workの下の*.cfgファイル>    
 このコマンドで*.xmodel, meta.json, md5sum.txtがyolov3_compileディレクトリに自動でできる。但し、*.prototxtは手動で転送する必要がある。  
 
@@ -68,8 +68,17 @@ meta.json
 md5sum.txt  
 ができる。  
 
+### 自動転送スクリプト  
+yolov3-dlab/compiled_yolov3/transfer_model.py
+*.xmodel, meta.json, md5sum.txtを自動でKV260の/usr/share/vitis_ai_library/modelsにディレクトリを作って転送する。  
+例えば、  
+yolov3-tiny_final.xmodelの場合、yolov3-tinyというフォルダ（_より前の部分の名前）を作ってyolov3-tiny.xmodelとして転送する。 
 
-
+使い方（Vitis-AIのDocker上で実行）
+```bash
+python transfer_model.py --xmodel yolov3-tiny_final.xmodel
+```
+途中で４回、KV260のPASSWDを聞かれるので入力する。
 
 
 
