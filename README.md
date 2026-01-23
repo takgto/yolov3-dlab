@@ -51,7 +51,7 @@ $ cd /home/root/Vitis-AI/examples/Vitis-AI-Library/samples/yolov3
 $ ./build.sh  
 
 ### 自動変換スクリプト
-yolov3-dlab/scripts_tf2/convert_model.py  
+yolov3-dlab/scripts_tf2/convert_model.py    
 convert_model.py --weights_name <work/backupの下の*.weightsモデル> --config_name <workの下の*.cfgファイル>    
 このコマンドで*.xmodel, meta.json, md5sum.txtがyolov3_compileディレクトリに自動でできる。但し、*.prototxtは手動で転送する必要がある。  
 
