@@ -52,16 +52,16 @@ $ ./build.sh
 
 ### 自動変換スクリプト
 scripts_tf2/convert_model  
-convert_model --weights_name <work/backupの下の*.weightsモデル> --config_name <workの下の*.cfgファイル>  
+convert_model --weights_name <work/backupの下の*.weightsモデル> --config_name <workの下の*.cfgファイル>    
 このコマンドで*.xmodel, meta.json, md5sum.txtがyolov3_compileディレクトリに自動でできる。但し、*.prototxtは手動で転送する必要がある。  
 
 例:  
-yolov3-dlab/workに、yolov3-tiny.cfg  
-yolov3-dlab/work/backupに、yolov3-tiny_final.weights
+yolov3-dlab/workに、yolov3-tiny.cfg    
+yolov3-dlab/work/backupに、yolov3-tiny_final.weights  
 がある場合、 
-'''bash
+```bash
 python convert_model.py --config_name yolov3-tiny.cfg --weights_name yolov3-tiny_final.weights
-'''
+```
 を実行すると、compiled_yolov3-tinyのディレクトリに  
 yolov3-tiny_final.weights  
 meta.json  
