@@ -62,7 +62,7 @@ yolov3-dlab/work/backupに、yolov3-tiny_final.weights
 ```bash
 python convert_model.py --config_name yolov3-tiny.cfg --weights_name yolov3-tiny_final.weights
 ```
-を実行すると、compiled_yolov3-tinyのディレクトリに  
+を実行すると、compiled_yolov3のディレクトリに  
 yolov3-tiny_final.xmodel  
 meta.json  
 md5sum.txt  
