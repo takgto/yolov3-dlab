@@ -50,6 +50,12 @@ Remote Host: 192.168.1.100 Specify Name: root
 $ cd /home/root/Vitis-AI/examples/Vitis-AI-Library/samples/yolov3  
 $ ./build.sh  
 
+scripts_tf2/convert_model
+convert_model --weights_name <work/backupの下の*.weightsモデル> --config_name <workの下の*.cfgファイル>
+このコマンドで*.xmodel, meta.json, md5sum.txtがyolov3_compileディレクトリに自動でできる。
+
+
+
 
 
 
