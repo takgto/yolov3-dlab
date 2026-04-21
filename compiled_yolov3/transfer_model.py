@@ -19,6 +19,8 @@ Vitis AI モデルファイル転送スクリプト
 import subprocess
 import sys
 import argparse
+import tempfile
+import atexit
 from pathlib import Path
 from typing import List
 
@@ -27,14 +29,55 @@ from typing import List
 REMOTE_HOST = "root@192.168.1.100"
 REMOTE_BASE_DIR = "/usr/share/vitis_ai_library/models"
 
+# SSH ControlMaster 用のソケットパス
+_ctrl_socket = None
+
+
+def ssh_control_options() -> List[str]:
+    """SSH ControlMaster 共有接続用のオプションを返す"""
+    return ["-o", f"ControlPath={_ctrl_socket}",
+            "-o", "ControlMaster=auto",
+            "-o", "ControlPersist=60"]
+
+
+def start_ssh_connection() -> bool:
+    """SSH ControlMaster 接続を確立（パスワード入力は1回だけ）"""
+    global _ctrl_socket
+    _ctrl_socket = Path(tempfile.mkdtemp()) / "ssh_ctrl_%h_%p_%r"
+
+    print("[接続] SSH接続を確立中...")
+    cmd = ["ssh"] + ssh_control_options() + ["-o", "ControlMaster=yes",
+           "-N", "-f", REMOTE_HOST]
+    result = subprocess.run(cmd)
+    if result.returncode != 0:
+        print("  ✗ SSH接続の確立に失敗しました")
+        return False
+    print("  ✓ SSH接続を確立しました（以降パスワード不要）")
+
+    atexit.register(close_ssh_connection)
+    return True
+
+
+def close_ssh_connection():
+    """SSH ControlMaster 接続を切断"""
+    if _ctrl_socket is None:
+        return
+    subprocess.run(
+        ["ssh", "-o", f"ControlPath={_ctrl_socket}", "-O", "exit", REMOTE_HOST],
+        capture_output=True
+    )
+    # ソケットの親ディレクトリを削除
+    sock_dir = Path(str(_ctrl_socket)).parent
+    if sock_dir.exists():
+        import shutil
+        shutil.rmtree(sock_dir, ignore_errors=True)
+
 
 def extract_model_name(xmodel_filename: str) -> str:
     """xmodelファイル名から最後の'_'より前の部分をモデル名として抽出"""
-    # 拡張子を除去
-    stem = Path(xmodel_filename).stem  # yolov3-tiny-416_final
-    # 最後の'_'で分割して前の部分を取得
+    stem = Path(xmodel_filename).stem
     if '_' in stem:
-        model_name = stem.rsplit('_', 1)[0]  # yolov3-tiny-416
+        model_name = stem.rsplit('_', 1)[0]
     else:
         model_name = stem
     return model_name
@@ -44,9 +87,9 @@ def run_command(cmd: List[str], description: str) -> bool:
     """コマンドを実行し、結果を表示"""
     print(f"[実行中] {description}")
     print(f"  コマンド: {' '.join(cmd)}")
-    
+
     result = subprocess.run(cmd, capture_output=True, text=True)
-    
+
     if result.returncode == 0:
         print(f"  ✓ 成功")
         return True
@@ -57,22 +100,22 @@ def run_command(cmd: List[str], description: str) -> bool:
 
 def transfer_model(xmodel_path: str) -> bool:
     """モデルファイルを転送"""
-    
+
     # パスの検証
     xmodel = Path(xmodel_path)
     model_dir = xmodel.parent
     meta = model_dir / "meta.json"
     md5 = model_dir / "md5sum.txt"
-    
+
     # モデル名を抽出
     model_name = extract_model_name(xmodel.name)
     remote_dir = f"{REMOTE_BASE_DIR}/{model_name}"
-    
+
     for f, name in [(xmodel, "xmodel"), (meta, "meta.json"), (md5, "md5sum.txt")]:
         if not f.exists():
             print(f"エラー: {name} が見つかりません: {f}")
             return False
-    
+
     print(f"\n{'='*60}")
     print(f"転送設定")
     print(f"{'='*60}")
@@ -83,43 +126,49 @@ def transfer_model(xmodel_path: str) -> bool:
     print(f"  md5sum:    {md5}")
     print(f"転送先: {REMOTE_HOST}:{remote_dir}/")
     print(f"{'='*60}\n")
-    
+
+    # SSH ControlMaster 接続を確立（パスワード入力1回）
+    if not start_ssh_connection():
+        return False
+
+    ctrl = ssh_control_options()
+
     # 1. リモートディレクトリ作成
     if not run_command(
-        ["ssh", REMOTE_HOST, f"mkdir -p {remote_dir}"],
+        ["ssh"] + ctrl + [REMOTE_HOST, f"mkdir -p {remote_dir}"],
         "リモートディレクトリ作成"
     ):
         return False
-    
+
     # 2. xmodel転送（リネームあり）
     if not run_command(
-        ["scp", str(xmodel), f"{REMOTE_HOST}:{remote_dir}/{model_name}.xmodel"],
+        ["scp"] + ctrl + [str(xmodel), f"{REMOTE_HOST}:{remote_dir}/{model_name}.xmodel"],
         f"xmodel転送 ({xmodel.name} → {model_name}.xmodel)"
     ):
         return False
-    
+
     # 3. meta.json転送
     if not run_command(
-        ["scp", str(meta), f"{REMOTE_HOST}:{remote_dir}/meta.json"],
+        ["scp"] + ctrl + [str(meta), f"{REMOTE_HOST}:{remote_dir}/meta.json"],
         "meta.json転送"
     ):
         return False
-    
+
     # 4. md5sum.txt転送
     if not run_command(
-        ["scp", str(md5), f"{REMOTE_HOST}:{remote_dir}/md5sum.txt"],
+        ["scp"] + ctrl + [str(md5), f"{REMOTE_HOST}:{remote_dir}/md5sum.txt"],
         "md5sum.txt転送"
     ):
         return False
-    
+
     print(f"\n{'='*60}")
     print("✓ 全ファイルの転送が完了しました")
     print(f"{'='*60}")
-    
+
     # 転送結果確認
     print("\n[確認] リモートディレクトリの内容:")
-    subprocess.run(["ssh", REMOTE_HOST, f"ls -la {remote_dir}/"])
-    
+    subprocess.run(["ssh"] + ctrl + [REMOTE_HOST, f"ls -la {remote_dir}/"])
+
     return True
 
 

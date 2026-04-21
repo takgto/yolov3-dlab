@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser(description='Darknet To xmodel Converter.')
 
 parser.add_argument('--config_name', help='Darknet cfg file name.')
 parser.add_argument('--weights_name', help='Darknet weights file name.')
+parser.add_argument('--compiled_dir', default='../compiled_yolov3', help='Output directory for compiled xmodel (default: ../compiled_yolov3).')
 
 args = parser.parse_args()
 
@@ -26,7 +27,7 @@ if not os.path.exists(config_path):
 # weight file of darknet
 weights_path = os.path.join(weights_dir, args.weights_name)
 if not os.path.exists(weights_path):
-    print(f'ERROR: {weight_path} does NOT exists.')
+    print(f'ERROR: {weights_path} does NOT exists.')
     exit(1)
 
 # output file name of keras model
@@ -70,7 +71,7 @@ else:
 
 # Set argument of compiler
 arch = "/opt/vitis_ai/compiler/arch/DPUCZDX8G/KV260/arch.json"
-compiled_dir = "../compiled_yolov3"
+compiled_dir = args.compiled_dir
 compiled_name = os.path.splitext(args.weights_name)[0]
 if not os.path.exists(compiled_dir):
     os.makedirs(compiled_dir)
