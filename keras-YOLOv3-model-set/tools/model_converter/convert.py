@@ -56,6 +56,10 @@ parser.add_argument(
     '--yolo4_reorder',
     help='Reorder output tensors for YOLOv4 cfg and weights file.',
     action='store_true')
+parser.add_argument(
+    '--groups-as-conv',
+    help='route の groups 処理を Lambda(tf.split) でなく 1x1 Conv2D に置き換える（DPU 対応）。',
+    action='store_true')
 
 
 def unique_config_sections(config_file):
@@ -367,11 +371,26 @@ def main(args):
                 route_layer = layers[0]  # group route only have 1 input layer
                 print('Split {} to {} groups and pick id {}'.format(route_layer, groups, group_id))
 
-                all_layers.append(
-                    Lambda(
-                        # tf.split implementation for groups route
-                        lambda x: tf.split(x, num_or_size_splits=groups, axis=-1)[group_id],
-                        name='group_route_'+str(len(all_layers)))(route_layer))
+                if args.groups_as_conv:
+                    # 1x1 Conv2D でチャンネル選択（DPU 対応）
+                    c_in = K.int_shape(route_layer)[-1]
+                    assert c_in % groups == 0, \
+                        'route groups={} がチャンネル数 {} で割り切れません'.format(groups, c_in)
+                    c_out = c_in // groups
+                    w = np.zeros((1, 1, c_in, c_out), dtype='float32')
+                    for ci in range(c_out):
+                        w[0, 0, group_id * c_out + ci, ci] = 1.0
+                    layer_name = 'group_route_conv_' + str(len(all_layers))
+                    all_layers.append(
+                        Conv2D(c_out, (1, 1), use_bias=False, trainable=False,
+                               kernel_initializer=tf.constant_initializer(w),
+                               weights=[w], name=layer_name)(route_layer))
+                else:
+                    all_layers.append(
+                        Lambda(
+                            # tf.split implementation for groups route
+                            lambda x: tf.split(x, num_or_size_splits=groups, axis=-1)[group_id],
+                            name='group_route_'+str(len(all_layers)))(route_layer))
                 prev_layer = all_layers[-1]
             else:
                 if len(layers) > 1:
@@ -387,11 +406,13 @@ def main(args):
         elif section.startswith('maxpool'):
             size = int(cfg_parser[section]['size'])
             stride = int(cfg_parser[section]['stride'])
+            pool_name = 'darknet_pool_{}'.format(len(all_layers)) if args.groups_as_conv else None
             all_layers.append(
                 MaxPooling2D(
                     pool_size=(size, size),
                     strides=(stride, stride),
-                    padding='same')(prev_layer))
+                    padding='same',
+                    name=pool_name)(prev_layer))
             prev_layer = all_layers[-1]
 
         elif section.startswith('avgpool'):

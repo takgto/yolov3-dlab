@@ -225,6 +225,8 @@ def main():
                         help='Output directory for compiled xmodel (default: ../compiled_yolov3).')
     parser.add_argument('--transfer-only', action='store_true',
                         help='Skip conversion/quantization/compile and transfer existing xmodel to KV260.')
+    parser.add_argument('--groups-as-conv', action='store_true',
+                        help='convert.py に --groups-as-conv を渡す（YOLOv4-tiny の route groups 対応）')
     args = parser.parse_args()
 
     compiled_dir = args.compiled_dir
@@ -262,8 +264,9 @@ def main():
             os.remove(h5_path)
 
         keras_converter = "../keras-YOLOv3-model-set/tools/model_converter/convert.py"
+        extra_args = " --groups-as-conv" if args.groups_as_conv else ""
         keras_arguments = " ".join([config_path, weights_path, h5_path])
-        cmd = " ".join(["python3", keras_converter, keras_arguments])
+        cmd = " ".join(["python3", keras_converter, keras_arguments]) + extra_args
         print(cmd)
         os.system(cmd)
 
