@@ -44,14 +44,11 @@ if inspect:
                             verbose=0)
 
 # Quantizer
-# 注意: 既存の npy (my_tf_calib4.npy) は BGR / /256 で作られている。
-# KV260 の C++ (setInputPointer) は RGB / INTER_LINEAR / /256 なので、
-# 正しい前処理の npy を使うこと。
-# 正しい npy の作成: yolo-quant-eval/scripts/make_calib_npy.py を使う。
+# my_tf_calib4.npy は RGB / INTER_LINEAR / /256 (250枚) で作成済み。
+# 作成: yolo-quant-eval/scripts/make_calib_npy.py
+# 旧版 (BGR) は my_tf_calib4.old.npy にリネーム済み。
 print('loading CALIB_DATASET...')
 valid_dataset = np.load(CALIB_DATASET)
-# 既存 npy が BGR の場合は RGB に変換する
-# valid_dataset = valid_dataset[:, :, :, ::-1]  # BGR→RGB（チャンネル軸を反転）
 print('done.')
 
 cal_steps = args['cal_steps']
